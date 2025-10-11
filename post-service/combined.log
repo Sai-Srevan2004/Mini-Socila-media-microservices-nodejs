@@ -39,3 +39,5 @@
 {"level":"info","message":"Post service running on port 3003","service":"user-service","timestamp":"2025-10-10T10:16:57.183Z"}
 {"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-10T10:16:57.241Z"}
 {"level":"info","message":"Create post endpoint hit","service":"user-service","timestamp":"2025-10-10T10:17:57.919Z"}
+{"level":"info","message":"Post service running on port 3003","service":"user-service","timestamp":"2025-10-11T10:07:39.098Z"}
+{"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-11T10:07:39.132Z"}

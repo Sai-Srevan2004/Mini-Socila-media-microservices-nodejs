@@ -39,3 +39,11 @@
 {"buffer":{"data":[104,232,156,72,246,22,19,203,78,118,113,177],"type":"Buffer"},"level":"info","message":"New tokens generated for user:","service":"user-service","timestamp":"2025-10-10T08:23:47.364Z"}
 {"level":"info","message":"Refresh token endpoint hit...","service":"user-service","timestamp":"2025-10-10T08:26:40.479Z"}
 {"level":"warn","message":"Refresh token missing!","service":"user-service","timestamp":"2025-10-10T08:26:40.480Z"}
+{"level":"info","message":"User Service started running at PORT:3001","service":"user-service","timestamp":"2025-10-11T10:07:16.508Z"}
+{"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-11T10:07:16.576Z"}
+{"level":"info","message":"Registration endpoint hit...","service":"user-service","timestamp":"2025-10-11T10:16:46.064Z"}
+{"level":"warn","message":"User already exists with this email or username!","service":"user-service","timestamp":"2025-10-11T10:16:46.187Z"}
+{"level":"info","message":"Registration endpoint hit...","service":"user-service","timestamp":"2025-10-11T10:17:07.849Z"}
+{"buffer":{"data":[104,234,46,163,240,187,171,31,40,23,80,234],"type":"Buffer"},"level":"info","message":"User registered successfully:","service":"user-service","timestamp":"2025-10-11T10:17:08.252Z"}
+{"level":"info","message":"Login endpoint hit...","service":"user-service","timestamp":"2025-10-11T10:17:57.867Z"}
+{"buffer":{"data":[104,234,46,163,240,187,171,31,40,23,80,234],"type":"Buffer"},"level":"info","message":"Login successful for user:","service":"user-service","timestamp":"2025-10-11T10:17:58.174Z"}

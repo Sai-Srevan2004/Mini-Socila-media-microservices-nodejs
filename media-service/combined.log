@@ -70,3 +70,5 @@
 {"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-10T09:03:32.987Z"}
 {"level":"info","message":"User Service started running at PORT:3002","service":"user-service","timestamp":"2025-10-10T09:04:59.222Z"}
 {"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-10T09:04:59.285Z"}
+{"level":"info","message":"User Service started running at PORT:3002","service":"user-service","timestamp":"2025-10-11T10:07:49.887Z"}
+{"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-11T10:07:49.905Z"}
