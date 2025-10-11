@@ -9,6 +9,9 @@ const register = async (req, res) => {
   logger.info("Registration endpoint hit...");
 
   try {
+    if (!req.body) {
+      return res.status(400).json({ success: false, message: "Request body missing!" });
+    }
     const { username, email, password } = req.body;
 
     // Validate input
@@ -43,8 +46,11 @@ const login = async (req, res) => {
   logger.info("Login endpoint hit...");
 
   try {
+    if (!req.body) {
+      return res.status(400).json({ success: false, message: "Request body missing!" });
+    }
+    
     const { email, password } = req.body;
-
     // Validate input
     const { error } = validatelogin({ email, password });
     if (error) {
