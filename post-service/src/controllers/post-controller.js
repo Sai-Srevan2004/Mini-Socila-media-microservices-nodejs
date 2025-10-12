@@ -23,6 +23,7 @@ const createPost = async (req, res) => {
       });
     }
     const { content, mediaIds } = req.body;
+
     const newlyCreatedPost = new Post({
       userId: req.user.userId,
       content,
@@ -30,6 +31,15 @@ const createPost = async (req, res) => {
     });
 
     await newlyCreatedPost.save();
+
+    //publish event of rabbitmq and will be consumed in search service
+    await publishEvent('post.created',{
+       postId:newlyCreatedPost._id,
+       userId:newlyCreatedPost.userId,
+       content:newlyCreatedPost.content, 
+       PostCreatedAt:newlyCreatedPost.createdAt
+    })
+
 
     return res.status(201).json({
         message:"Post created Successfully!",

@@ -7,7 +7,7 @@ async function handlePostCreated(event) {
       postId: event.postId,
       userId: event.userId,
       content: event.content,
-      createdAt: event.createdAt,
+      PostCreatedAt: event.PostCreatedAt,
     });
 
     await newSearchPost.save();

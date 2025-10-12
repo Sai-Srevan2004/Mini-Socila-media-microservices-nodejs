@@ -10,7 +10,7 @@ const EXCHANGE_NAME = "mini_social_events";
 async function connectToRabbitMQ()
 {
   try {
-     connection=amqp.connect(process.env.RABBITMQ_URL)
+     connection=await amqp.connect(process.env.RABBITMQ_URL)
      
      channel=await connection.createChannel()
 

@@ -16,7 +16,7 @@ const searchPostSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    createdAt: {
+    PostCreatedAt: {
       type: Date,
       required: true,
     },
@@ -25,7 +25,7 @@ const searchPostSchema = new mongoose.Schema(
 );
 
 searchPostSchema.index({ content: "text" });
-searchPostSchema.index({ createdAt: -1 });
+searchPostSchema.index({ PostCreatedAt: -1 });
 
 const Search = mongoose.model("Search", searchPostSchema);
 module.exports = Search;

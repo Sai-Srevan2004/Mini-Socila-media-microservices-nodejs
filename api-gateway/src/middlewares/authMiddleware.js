@@ -13,7 +13,7 @@ const validateToken = (req, res, next) => {
     });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) {
       logger.warn("Invalid token!");
       return res.status(429).json({

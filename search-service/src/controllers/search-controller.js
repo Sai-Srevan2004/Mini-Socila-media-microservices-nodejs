@@ -51,48 +51,48 @@ const searchPostController = async (req, res) => {
 
 
 // Temporary controller to insert test search data
-const createSearchPost = async (req, res) => {
-  logger.info("Create Search Post endpoint hit");
-  try {
-    const { postId, userId, content, createdAt } = req.body;
+// const createSearchPost = async (req, res) => {
+//   logger.info("Create Search Post endpoint hit");
+//   try {
+//     const { postId, userId, content, PostCreatedAt } = req.body;
 
-    if (!postId || !userId || !content || !createdAt) {
-      return res.status(400).json({
-        success: false,
-        message: "All fields (postId, userId, content, createdAt) are required",
-      });
-    }
+//     if (!postId || !userId || !content || !PostCreatedAt) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "All fields (postId, userId, content, createdAt) are required",
+//       });
+//     }
 
-    // Check if this post already exists in Search DB
-    const existing = await Search.findOne({ postId });
-    if (existing) {
-      return res.status(400).json({
-        success: false,
-        message: "Post already exists in search database",
-      });
-    }
+//     // Check if this post already exists in Search DB
+//     const existing = await Search.findOne({ postId });
+//     if (existing) {
+//       return res.status(400).json({
+//         success: false,
+//         message: "Post already exists in search database",
+//       });
+//     }
 
-    // Create a new search document
-    const searchPost = await Search.create({
-      postId,
-      userId,
-      content,
-      createdAt,
-    });
+//     // Create a new search document
+//     const searchPost = await Search.create({
+//       postId,
+//       userId,
+//       content,
+//       PostCreatedAt,
+//     });
 
-    return res.status(201).json({
-      success: true,
-      message: "Search post stored successfully",
-      data: searchPost,
-    });
-  } catch (error) {
-    logger.error("Error creating search post", error);
-    return res.status(500).json({
-      success: false,
-      message: "Internal Server Error",
-    });
-  }
-};
+//     return res.status(201).json({
+//       success: true,
+//       message: "Search post stored successfully",
+//       data: searchPost,
+//     });
+//   } catch (error) {
+//     logger.error("Error creating search post", error);
+//     return res.status(500).json({
+//       success: false,
+//       message: "Internal Server Error",
+//     });
+//   }
+// };
 
 
-module.exports = { searchPostController,createSearchPost };
+module.exports = { searchPostController};
