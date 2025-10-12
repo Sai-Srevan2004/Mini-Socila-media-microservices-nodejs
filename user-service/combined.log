@@ -47,3 +47,7 @@
 {"buffer":{"data":[104,234,46,163,240,187,171,31,40,23,80,234],"type":"Buffer"},"level":"info","message":"User registered successfully:","service":"user-service","timestamp":"2025-10-11T10:17:08.252Z"}
 {"level":"info","message":"Login endpoint hit...","service":"user-service","timestamp":"2025-10-11T10:17:57.867Z"}
 {"buffer":{"data":[104,234,46,163,240,187,171,31,40,23,80,234],"type":"Buffer"},"level":"info","message":"Login successful for user:","service":"user-service","timestamp":"2025-10-11T10:17:58.174Z"}
+{"level":"info","message":"User Service started running at PORT:3001","service":"user-service","timestamp":"2025-10-12T06:10:22.311Z"}
+{"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-12T06:10:22.370Z"}
+{"level":"info","message":"Login endpoint hit...","service":"user-service","timestamp":"2025-10-12T06:22:52.029Z"}
+{"buffer":{"data":[104,232,156,72,246,22,19,203,78,118,113,177],"type":"Buffer"},"level":"info","message":"Login successful for user:","service":"user-service","timestamp":"2025-10-12T06:22:52.461Z"}

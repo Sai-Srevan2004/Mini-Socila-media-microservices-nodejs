@@ -50,7 +50,7 @@ const mediaUpload = async (req, res) => {
     }
 }
 
-
+//optional method
 const getAllMedias = async (req, res) => {
   try {
      console.log(req.user.userId)

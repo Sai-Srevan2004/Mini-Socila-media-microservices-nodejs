@@ -1,0 +1,9 @@
+# Node modules for all services
+**/node_modules
+
+# Environment variables for all services
+**/.env
+
+# Logs
+**/logs
+**/*.log

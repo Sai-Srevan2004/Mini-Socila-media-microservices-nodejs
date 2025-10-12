@@ -1,3 +1,4 @@
+const { publishEvent } = require("../config/rabbitmq");
 const Post = require("../models/Post");
 const logger = require("../utils/logger");
 const { validateCreatePost } = require("../utils/validation");
@@ -112,6 +113,13 @@ const deletePost = async (req, res) => {
         success: false,
       });
     }
+
+    //publish event of rabbitmq and will be consumed in media service
+    await publishEvent('post.deleted',{
+      postId:post._id.toString(),
+      userId:req.user.userId,
+      mediaIds:post.mediaIds
+    })
 
     return res.status(200).json({
         success:true,

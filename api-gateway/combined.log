@@ -21,3 +21,17 @@
 {"level":"info","message":"Received POST request to /v1/user-service/login","service":"api-gateway","timestamp":"2025-10-11T10:17:57.857Z"}
 {"level":"info","message":"Request body, [object Object]","service":"api-gateway","timestamp":"2025-10-11T10:17:57.858Z"}
 {"level":"info","message":"Response received from Identity service: 200","service":"api-gateway","timestamp":"2025-10-11T10:17:58.179Z"}
+{"level":"info","message":"API Gateway is running on port 3000","service":"api-gateway","timestamp":"2025-10-12T06:20:17.766Z"}
+{"level":"info","message":"user service is running on port http://localhost:3001","service":"api-gateway","timestamp":"2025-10-12T06:20:17.772Z"}
+{"level":"info","message":"Post service is running on port http://localhost:3003","service":"api-gateway","timestamp":"2025-10-12T06:20:17.773Z"}
+{"level":"info","message":"Media service is running on port http://localhost:3002","service":"api-gateway","timestamp":"2025-10-12T06:20:17.774Z"}
+{"level":"info","message":"Search service is running on port http://localhost:3004","service":"api-gateway","timestamp":"2025-10-12T06:20:17.774Z"}
+{"level":"info","message":"Received DELETE request to /v1/post-service/68e8dac6498e84f02c6ffe2d","service":"api-gateway","timestamp":"2025-10-12T06:22:21.705Z"}
+{"level":"info","message":"Request body, undefined","service":"api-gateway","timestamp":"2025-10-12T06:22:21.712Z"}
+{"level":"warn","message":"Access attempt without valid token!","service":"api-gateway","timestamp":"2025-10-12T06:22:21.714Z"}
+{"level":"info","message":"Received DELETE request to /v1/post-service/68e8dac6498e84f02c6ffe2d","service":"api-gateway","timestamp":"2025-10-12T06:23:03.039Z"}
+{"level":"info","message":"Request body, undefined","service":"api-gateway","timestamp":"2025-10-12T06:23:03.042Z"}
+{"level":"warn","message":"Access attempt without valid token!","service":"api-gateway","timestamp":"2025-10-12T06:23:03.044Z"}
+{"level":"info","message":"Received DELETE request to /v1/post-service/68e8dac6498e84f02c6ffe2d","service":"api-gateway","timestamp":"2025-10-12T06:24:07.216Z"}
+{"level":"info","message":"Request body, undefined","service":"api-gateway","timestamp":"2025-10-12T06:24:07.217Z"}
+{"level":"warn","message":"Invalid token!","service":"api-gateway","timestamp":"2025-10-12T06:24:07.223Z"}

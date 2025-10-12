@@ -47,3 +47,8 @@
 {"level":"info","message":"Search endpoint hit!","service":"user-service","timestamp":"2025-10-11T06:28:46.335Z"}
 {"level":"info","message":"Search service is running on port: 3004","service":"user-service","timestamp":"2025-10-11T10:07:29.255Z"}
 {"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-11T10:07:29.285Z"}
+{"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-12T06:11:07.288Z"}
+{"level":"info","message":"Connected to rabbit mq","service":"user-service","timestamp":"2025-10-12T06:11:07.735Z"}
+{"level":"info","message":"Subscribed to event: post.created","service":"user-service","timestamp":"2025-10-12T06:11:07.802Z"}
+{"level":"info","message":"Subscribed to event: post.deleted","service":"user-service","timestamp":"2025-10-12T06:11:07.827Z"}
+{"level":"info","message":"Search service is running on port: 3004","service":"user-service","timestamp":"2025-10-12T06:11:07.833Z"}

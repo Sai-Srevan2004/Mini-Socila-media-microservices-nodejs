@@ -72,3 +72,7 @@
 {"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-10T09:04:59.285Z"}
 {"level":"info","message":"User Service started running at PORT:3002","service":"user-service","timestamp":"2025-10-11T10:07:49.887Z"}
 {"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-11T10:07:49.905Z"}
+{"level":"info","message":"Db connected Sucessfully!","service":"user-service","timestamp":"2025-10-12T06:19:58.006Z"}
+{"level":"info","message":"Connected to RabbitMQ","service":"user-service","timestamp":"2025-10-12T06:19:58.058Z"}
+{"level":"info","message":"Subscribed to event post.deleted","service":"user-service","timestamp":"2025-10-12T06:19:58.109Z"}
+{"level":"info","message":"User Service started running at PORT:3002","service":"user-service","timestamp":"2025-10-12T06:19:58.116Z"}
