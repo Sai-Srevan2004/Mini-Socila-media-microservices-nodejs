@@ -3,6 +3,7 @@
 
 # Environment variables for all services
 **/.env
+**/.env.docker
 
 # Logs
 **/logs

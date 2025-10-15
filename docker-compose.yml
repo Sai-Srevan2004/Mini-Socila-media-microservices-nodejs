@@ -1,0 +1,149 @@
+
+
+services:
+  # ----------------- API Gateway -----------------
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - "3000:3000"
+    env_file: ./api-gateway/.env.docker
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: always
+    networks:
+      - app-network
+
+  # ----------------- User Service -----------------
+  user-service:
+    build: ./user-service
+    container_name: user-service
+    ports:
+      - "3001:3001"
+    env_file: ./user-service/.env.docker
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: always
+    networks:
+      - app-network
+
+  # ----------------- Media Service -----------------
+  media-service:
+    build: ./media-service
+    container_name: media-service
+    ports:
+      - "3002:3002"
+    env_file: ./media-service/.env.docker
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: always
+    networks:
+      - app-network
+
+  # ----------------- Post Service -----------------
+  post-service:
+    build: ./post-service
+    container_name: post-service
+    ports:
+      - "3003:3003"
+    env_file: ./post-service/.env.docker
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: always
+    networks:
+      - app-network
+
+  # ----------------- Search Service -----------------
+  search-service:
+    build: ./search-service
+    container_name: search-service
+    ports:
+      - "3004:3004"
+    env_file: ./search-service/.env.docker
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: always
+    networks:
+      - app-network
+
+  # ----------------- Redis -----------------
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    restart: always
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ----------------- RabbitMQ -----------------
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    restart: always
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # ----------------- MongoDB -----------------
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: always
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+# ----------------- Volumes -----------------
+volumes:
+  mongo-data:
+
+# ----------------- Network -----------------
+networks:
+  app-network:
+    driver: bridge

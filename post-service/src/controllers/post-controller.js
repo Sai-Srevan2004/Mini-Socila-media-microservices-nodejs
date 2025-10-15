@@ -3,6 +3,16 @@ const Post = require("../models/Post");
 const logger = require("../utils/logger");
 const { validateCreatePost } = require("../utils/validation");
 
+async function invalidatePostCache(req, input) {
+  const cachedKey = `post:${input}`;
+  await req.redisClient.del(cachedKey);
+
+  const keys = await req.redisClient.keys("posts:*");
+  if (keys.length > 0) {
+    await req.redisClient.del(keys);
+  }
+}
+
 const createPost = async (req, res) => {
   logger.info("Create post endpoint hit");
   try {
@@ -39,7 +49,10 @@ const createPost = async (req, res) => {
        content:newlyCreatedPost.content, 
        PostCreatedAt:newlyCreatedPost.createdAt
     })
-
+ 
+    //redis related code--cache
+    await invalidatePostCache(req, newlyCreatedPost._id.toString());
+    logger.info("Post created successfully", newlyCreatedPost);
 
     return res.status(201).json({
         message:"Post created Successfully!",
@@ -61,6 +74,18 @@ const getAllPosts = async (req, res) => {
     const limit = parseInt(req.query.limit) || 10;
     const startIndex = (page - 1) * limit;
 
+    //getting if any posts in cache
+    const cacheKey = `posts:${page}:${limit}`;
+    const cachedPosts = await req.redisClient.get(cacheKey);
+
+    if (cachedPosts) {
+      return res.status(200).json({
+        success:true,
+        message:"Posts from cache",
+        data:JSON.parse(cachedPosts)
+      });
+    }
+
     const posts = await Post.find({})
       .sort({ createdAt: -1 })
       .skip(startIndex)
@@ -69,15 +94,21 @@ const getAllPosts = async (req, res) => {
     const totalNoOfPosts = await Post.countDocuments();
 
     const result = {
-      success:true,
-      message:"Postes fetched successfully!",
       posts,
       currentpage: page,
       totalPages: Math.ceil(totalNoOfPosts / limit),
       totalPosts: totalNoOfPosts,
     };
 
-    return res.status(200).json(result);
+     //save your posts in redis cache
+    await req.redisClient.setex(cacheKey, 300, JSON.stringify(result));
+
+    return res.status(200).json({
+      success:true,
+      message:"Postes fetched successfully!",
+      data:result
+    });
+
   } catch (error) {
     logger.error("Error fetching posts", error);
     res.status(500).json({
@@ -91,6 +122,19 @@ const getPost = async (req, res) => {
   try {
     const postId = req.params.id
 
+    //cache related code
+    const cachekey = `post:${postId}`;
+    const cachedPost = await req.redisClient.get(cachekey);
+
+    if (cachedPost) {
+      return res.status(200).json({
+        success:true,
+        message:"Post from cache",
+        data:JSON.parse(cachedPost)
+      });
+    }
+
+
     const singlePostDetailsbyId = await Post.findById(postId);
 
     if (!singlePostDetailsbyId) {
@@ -99,6 +143,12 @@ const getPost = async (req, res) => {
         success: false,
       });
     }
+
+     await req.redisClient.setex(
+      cachekey,
+      3600,
+      JSON.stringify(singlePostDetailsbyId)
+    );
 
     res.status(200).json({success:true,message:"Fetched post!",singlePostDetailsbyId});
   } catch (error) {
@@ -130,6 +180,8 @@ const deletePost = async (req, res) => {
       userId:req.user.userId,
       mediaIds:post.mediaIds
     })
+
+    await invalidatePostCache(req, req.params.id);
 
     return res.status(200).json({
         success:true,

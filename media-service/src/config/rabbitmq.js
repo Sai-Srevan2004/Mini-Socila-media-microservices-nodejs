@@ -7,19 +7,25 @@ let channel = null;
 
 const EXCHANGE_NAME = "mini_social_events";
 
-async function connectToRabbitMQ() {
-  try {
-    connection = await amqp.connect(process.env.RABBITMQ_URL);
+async function connectToRabbitMQ(retries = 10, delay = 5000) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      connection = await amqp.connect(process.env.RABBITMQ_URL);
+      channel = await connection.createChannel();
+      await channel.assertExchange(EXCHANGE_NAME, "topic", { durable: false });
 
-    channel = await connection.createChannel();
-
-    await channel.assertExchange(EXCHANGE_NAME, "topic", { durable: false });
-
-    logger.info("Connected to RabbitMQ");
-
-    return channel;
-  } catch (error) {
-    logger.error("Error connecting to RabbitMQ", error);
+      logger.info("Connected to RabbitMQ");
+      return channel;
+    } catch (error) {
+      logger.error(
+        `Failed to connect to RabbitMQ (Attempt ${i + 1}/${retries})`
+      );
+      if (i === retries - 1) {
+        logger.error("All retry attempts failed. RabbitMQ unreachable.");
+        throw error;
+      }
+      await new Promise((res) => setTimeout(res, delay));
+    }
   }
 }
 
@@ -33,7 +39,7 @@ async function publishEvent(routingKey, message) {
     routingKey,
     Buffer.from(JSON.stringify(message))
   );
-  logger.info(`Event published: ${routingKey}`);
+  logger.info(`📤 Event published: ${routingKey}`);
 }
 
 async function consumeEvent(routingKey, callback) {
@@ -52,7 +58,7 @@ async function consumeEvent(routingKey, callback) {
     }
   });
 
-  logger.info(`Subscribed to event ${routingKey}`);
+  logger.info(`Subscribed to event: ${routingKey}`);
 }
 
 module.exports = { connectToRabbitMQ, publishEvent, consumeEvent };
