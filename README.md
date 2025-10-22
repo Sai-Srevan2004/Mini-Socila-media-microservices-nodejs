@@ -55,7 +55,7 @@ after cloning go to each service directory and run
  ```bash
  npm install
 ```
-### Create Dockerfile in each service folder and make sure redis on your system is installed and also rabbitMQ installed before installing rabbitMQ make sure erlin is installed. And create a Docker-compose file in main root directory.
+### Create Dockerfile in each service folder and make sure redis on your system is installed and also rabbitMQ installed before installing rabbitMQ make sure Erlang is installed. And create a Docker-compose file in main root directory.
 
 ### 2. Create Environment Files
 
