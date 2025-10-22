@@ -48,8 +48,14 @@ Clone the project, configure services, and run everything with Docker.
 
 ```bash
 git clone https://github.com/Sai-Srevan2004/Mini-Socila-media-microservices-nodejs.git
-cd microservices-social-media
 ```
+after cloning go to each service directory and run
+
+### Run the command
+ ```bash
+ npm install
+```
+### Create Dockerfile in each service folder and make sure redis on your system is installed and also rabbitMQ installed before installing rabbitMQ make sure erlin is installed. And create a Docker-compose file in main root directory.
 
 ### 2. Create Environment Files
 
